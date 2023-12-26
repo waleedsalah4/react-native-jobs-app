@@ -5,12 +5,17 @@ import styles from "./screenheader.style";
 interface Props {
   iconUrl: ImageSourcePropType;
   dimension: number;
-  handlePress: () => void;
+  handlePress?: () => void;
 }
 
 const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }: Props) => {
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handlePress}>
+    <TouchableOpacity
+      style={styles.btnContainer}
+      onPress={() => {
+        if (handlePress) handlePress();
+      }}
+    >
       <Image
         source={iconUrl}
         resizeMode="cover"
